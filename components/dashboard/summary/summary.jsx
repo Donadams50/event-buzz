@@ -1,19 +1,30 @@
 import React from 'react';
-import { Image, View} from 'react-native';
+import { View, Text } from 'react-native';
 
-import styles from "./logo.style";
+import styles from "./summary.style";
 
-
-import { images} from '../../../constants';
-
-const Logo = () => {
+const Summary = () => {
   return (
-    <View style={styles.imageContainer} >
-    <Image source={images.logoLeftWhite} style={styles.image} />
-    <Image source={images.logoRightWhite} style={styles.image} />
-  </View>
-    
+    <View style={styles.container}>
+          {/* Total Tickets Card */}
+          <View style={styles.totalTicketcard}>
+      
+            {/* Display the total ticket count here */}
+            <Text style={styles.cardValue}>100</Text>
+            <Text style={styles.cardTitle}>Total Tickets</Text>
+          </View>
+          
+          {/* Transactions Card */}
+          <View style={[styles.card, styles.transactionsCard]}>
+          
+            {/* Display the transaction value here */}
+            <Text style={styles.cardValue}>$500,000</Text>
+            <Text style={styles.cardTitle}>Transactions</Text>
+          </View>
+    </View>
   );
 };
 
-export default Logo;
+
+
+export default Summary;

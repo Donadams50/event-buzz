@@ -97,7 +97,7 @@ const SignUp = () => {
                           <Ionicons name={showConfirmPassword ? 'eye-off' : 'eye'} size={24} color="black" />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button}   onPress={() => { router.push(`/dashboard`);}}>
                       <Text style={styles.buttonText}>Register</Text>
                     </TouchableOpacity>
                     <View style={styles.loginContainer}>

@@ -71,7 +71,7 @@ const Login = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.space} />
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => { router.push(`/dashboard`);}}>
                       <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                     <View style={styles.loginContainer}>
