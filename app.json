@@ -8,6 +8,15 @@
       "expo-router"
     ],
     "name": "eventBuzzReal",
-    "slug": "eventBuzzReal"
+    "slug": "eventBuzzReal",
+    "ios": {
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "REASON_FOR_REQUEST",
+        "UIBackgroundModes": ["location", "fetch"]
+      }
+    },
+    "android": {
+      "permissions": ["ACCESS_BACKGROUND_LOCATION"]
+    }
   }
 }

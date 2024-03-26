@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 1,
-    marginBottom: 20,
+    marginHorizontal: -10,
+    marginBottom: 1,
     flexDirection: 'row',
   },
   searchButton: {
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   addButton: {
-    backgroundColor: '#FFA500', // Adjust button color as needed
-    borderRadius: 100, // Make it round
-    width: '20%', // Take 5% of the search button width
-    aspectRatio: 1, // Ensure it remains square
+    backgroundColor: '#FFA500', 
+    borderRadius: 100,
+    width: '20%', 
+    aspectRatio: 1, 
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: -20, 
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   addButtonText: {
-    color: '#FFFFFF', // Adjust text color as needed
+    color: '#FFFFFF',
     fontSize: 24,
     fontWeight: 'bold',
   },

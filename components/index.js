@@ -10,7 +10,10 @@ import Login from "./login/login";
  // Dashboard screen
  import { default as DashboardSummary } from "./dashboard/summary/summary";
  import { default as DashboardSearchButton } from "./dashboard/search/search";
+ import { default as DashboardUpcomingEvent } from "./dashboard/upcoming/upcoming";
 
+ 
+ import EventList from "./event-list/event-list";
  
 // common
  import Footer from "./common/footer/footer";
@@ -23,5 +26,7 @@ export {
   Footer,
   Header,
   DashboardSummary,
-  DashboardSearchButton
+  DashboardSearchButton,
+  DashboardUpcomingEvent,
+  EventList
 };

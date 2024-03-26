@@ -4,16 +4,17 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 1,
+    marginHorizontal: -10,
     marginBottom: 10,
   },
-  totalTicketcard: {
+  totalTicketcard: { 
     flex: 1,
-    backgroundColor: '#FFA600', // Adjust card background color as needed
+    backgroundColor: '#FFA600', 
     borderRadius: 10,
-    padding: 15,
-    elevation: 3, // For Android elevation
-    shadowColor: '#000', // For iOS shadow
+    paddingTop: 30,
+    paddingBottom: 30,
+    elevation: 3, 
+    shadowColor: '#000', 
     shadowOpacity: 0.3,
     shadowRadius: 3,
     shadowOffset: { width: 0, height: 2 },
@@ -23,11 +24,12 @@ const styles = StyleSheet.create({
  transactionsCard: {
     marginLeft: 10, 
     flex: 1,
-    backgroundColor: '#083B51', // Adjust card background color as needed
+    backgroundColor: '#083B51',
     borderRadius: 10,
-    padding: 15,
-    elevation: 3, // For Android elevation
-    shadowColor: '#000', // For iOS shadow
+    paddingTop: 30,
+    paddingBottom: 30,
+    elevation: 3, 
+    shadowColor: '#000', 
     shadowOpacity: 0.3,
     shadowRadius: 3,
     shadowOffset: { width: 0, height: 2 },
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   cardValue: {
     fontSize: 18,
     color: '#ffffff',
-    marginBottom: 15,// Adjust text color as needed
+    marginBottom: 15,
   },
 });
 
