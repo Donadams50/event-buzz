@@ -37,6 +37,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     marginTop: 20,
   },
+  eventDetailsContainer: {
+    flex: 1,
+    paddingHorizontal: 0,
+    marginTop: 20,
+  },
+
+  
 });
+
  
 export default styles;

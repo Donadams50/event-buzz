@@ -11,8 +11,6 @@
     "slug": "eventBuzzReal",
     "ios": {
       "infoPlist": {
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "REASON_FOR_REQUEST",
-        "UIBackgroundModes": ["location", "fetch"]
       }
     },
     "android": {

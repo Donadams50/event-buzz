@@ -29,9 +29,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding:2
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activityIndicator: {
+    size:"large",
+    color:"#083B51"
+  },
   eventImage: {
     width: '100%',
-    height: '70%',
+    height: '64%',
     resizeMode: 'cover',
   },
   eventDetails: {
@@ -62,19 +71,30 @@ const styles = StyleSheet.create({
   eventDate: {
     fontSize: 14,
     color: '#666',
-    marginLeft: 5,
+    marginLeft: 2,
   },
   eventTime: {
     position: 'absolute',
     top: 5,
     right: 5,
     fontSize: 18,
-    color: '#ffffff',
+    color: '#000000',
     fontWeight: 'bold',
   },
   locationContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+
+  distanceContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  distance: {
+    fontSize: 14,
+    color: '#000',
+    fontWeight: 'bold'
+   
   },
   eventLocation: {
     fontSize: 14,
@@ -102,8 +122,8 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    
     paddingHorizontal: 10,
+    paddingVertical: 10,
     marginBottom: 20,
   },
   picker: {
@@ -113,7 +133,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   searchButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#083B51',
     paddingVertical: 10,
     borderRadius: 5,
     alignItems: 'center',

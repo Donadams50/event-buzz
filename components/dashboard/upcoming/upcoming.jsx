@@ -49,6 +49,7 @@ const UpcomingEvents = () => {
           console.error('Error fetching data:', error);
     }
     };
+    
 
 
   // Render item function for FlatList
@@ -60,7 +61,7 @@ const UpcomingEvents = () => {
         <Image source={{uri: item.images[0]}} style={styles.eventImage} />
         {/* <Text style={styles.eventTime}>{item.time}</Text> */}
         <View style={styles.eventDetails}>
-          <Text style={styles.eventTitle}>{item.title}</Text> 
+          <Text numberOfLines={1} style={styles.eventTitle}>{item.title}</Text> 
           <View style={styles.dateContainer}>
             <MaterialIcons name="date-range" size={16} color="#666" />
             <Text style={styles.eventDate}>{item.date}</Text>

@@ -14,6 +14,8 @@ import Login from "./login/login";
 
  
  import EventList from "./event-list/event-list";
+  
+ import EventDetails from "./event-details/event-details";
  
 // common
  import Footer from "./common/footer/footer";
@@ -28,5 +30,6 @@ export {
   DashboardSummary,
   DashboardSearchButton,
   DashboardUpcomingEvent,
-  EventList
+  EventList,
+  EventDetails
 };
