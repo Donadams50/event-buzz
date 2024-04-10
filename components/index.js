@@ -14,12 +14,15 @@ import Login from "./login/login";
 
  
  import EventList from "./event-list/event-list";
-  
  import EventDetails from "./event-details/event-details";
+ import TicketPage from "./ticket/ticket";
+ import TicketQRCode from "./ticket-qrcode/ticket-qrcode";
+ 
  
 // common
  import Footer from "./common/footer/footer";
  import Header from "./common/header/header";
+ import ModalMessage from "./common/modal/modal";
 export {
   Logo,
   Welcome,
@@ -31,5 +34,8 @@ export {
   DashboardSearchButton,
   DashboardUpcomingEvent,
   EventList,
-  EventDetails
+  EventDetails,
+  ModalMessage,
+  TicketPage,
+  TicketQRCode
 };

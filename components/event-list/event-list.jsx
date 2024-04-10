@@ -160,6 +160,7 @@ const EventList = () => {
     return distance.toFixed(2); // Round to 2 decimal places
    };
 
+   // at the click of an event to view more
    const handleEventPress = async (eventData) => {
     try {
       // Save event data to AsyncStorage
@@ -170,6 +171,8 @@ const EventList = () => {
       console.error('Error saving event data:', error);
     }
    };
+
+
    const renderItem = ({ item }) => (
     <View style={styles.eventCard}>
       <TouchableOpacity onPress={() => handleEventPress(item)}>

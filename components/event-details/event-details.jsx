@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity,ActivityIndicator } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import eventDetailsStyles from './event-details.style'; 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {  useRouter } from "expo-router";
+
+
+
 
 const EventDetails = () => {
+  const router = useRouter();
   const [eventData, setEventData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Retrieve event data from AsyncStorage
@@ -20,7 +26,35 @@ const EventDetails = () => {
       .catch((error) => console.error('Error retrieving event data:', error));
   }, []);
 
-  // Render loading indicator while eventData is null
+
+  const handlePayment = async () => {
+    try {
+      setIsLoading(true);
+      // Retrieve the current ticketList array from AsyncStorage
+      const currentTicketListString = await AsyncStorage.getItem('ticketList');
+      let currentTicketList = [];
+
+      // If there's a current ticketList, parse it
+      if (currentTicketListString) {
+        currentTicketList = JSON.parse(currentTicketListString);
+      }
+
+      // Append eventData to the ticketList array
+      currentTicketList.push(eventData);
+
+      // Save the updated ticketList array back to AsyncStorage
+      await AsyncStorage.setItem('ticketList', JSON.stringify(currentTicketList));
+      
+      // Notify user or navigate to another screen
+      console.log('Event ticket purchased successfully!');
+      setIsLoading(false);
+      router.push(`/ticket`);
+    } catch (error) {
+      console.error('Error handling payment:', error);
+    }
+  };
+
+  // Render loading indicator while eventData is empty
   if (!eventData) {
     return (
       <View style={eventDetailsStyles.loadingContainer}>
@@ -70,11 +104,13 @@ const EventDetails = () => {
         <Text style={eventDetailsStyles.price}>Price: ${eventData.price}</Text>
         <TouchableOpacity
           style={eventDetailsStyles.button}
-          onPress={() => {
-            // Proceed to payment logic
-          }}
-        >
-          <Text style={eventDetailsStyles.buttonText}>Proceed to Payment</Text>
+           onPress={() => {
+            handlePayment()
+           }}
+          >
+           {isLoading ? (<ActivityIndicator size="large" color="#083B51" />) : (
+             <Text style={eventDetailsStyles.buttonText}>Purchase Ticket</Text>
+            )}
         </TouchableOpacity>
       </View>
     </ScrollView>

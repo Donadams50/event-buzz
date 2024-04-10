@@ -78,7 +78,7 @@ const UpcomingEvents = () => {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>Upcoming Events Around me</Text>
+        <Text style={styles.heading}>Upcoming Events</Text>
         <FlatList
           data={upcomingEventsData}
           renderItem={renderItem}

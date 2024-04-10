@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   eventCard: {
-    width: '50%', // Adjust the width to allow space for two cards on a row
+    width: '50%', 
     height: 300,
     borderRadius: 0,
     overflow: 'hidden',

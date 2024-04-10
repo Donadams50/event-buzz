@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
       },
       likeBtnImage: {
         width: 50, 
-        height: 50
+        height: 0
       }
 });
 

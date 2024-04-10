@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {  useRouter } from "expo-router";
 
-import { Text, View, TouchableOpacity,Image, TextInput, ScrollView} from 'react-native';
+import { Text, View, TouchableOpacity,Image, TextInput, ScrollView, ActivityIndicator} from 'react-native';
 
 import { images} from '../../constants';
 
@@ -10,15 +10,64 @@ import styles from "./login.style";
 
 import { Ionicons } from '@expo/vector-icons';
 
-const Login = () => {
+const Login = ({ModalMessage}) => {
  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  
+  const handleLogin = async () => {
+    setIsLoading(true); 
+    // Validate form fields
+    if (!email || !password) {
+     // Display error modal if any required fields are empty
+     setIsLoading(false); 
+     setErrorMessage('Please fill in all required fields.');
+     setErrorModalVisible(true);
+     return;
+   }
+     try {
+       // Make API call to sign up
+       const response = await fetch('http://137.184.159.197:5000/login', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+           email,
+           password
+         }),
+       });
+     //  console.log(response)
+     const data = await response.json();
+     console.log(data)
+       if (data.status == 200) {
+         console.log(response)
+         // Navigate to the dashboard upon successful registration
+         setIsLoading(false);
+         router.push('/dashboard');
+       } else {
+        
+         //  console.error( response.json());
+         setIsLoading(false);
+         setErrorMessage(data.message);
+         setErrorModalVisible(true);
+       }
+     } catch (error) {
+      setIsLoading(false);
+       setErrorMessage("server error");
+       setErrorModalVisible(true);
+       console.error('Error:', error);
+     }
+   };
 
 
   const router = useRouter()
@@ -71,8 +120,12 @@ const Login = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.space} />
-                    <TouchableOpacity style={styles.button} onPress={() => { router.push(`/dashboard`);}}>
-                      <Text style={styles.buttonText}>Login</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => { handleLogin()}}>
+                    {isLoading ? (
+                            <ActivityIndicator size="large" color="#083B51" />
+                            ) : (
+                            <Text style={styles.buttonText}>Login</Text>
+                          )}
                     </TouchableOpacity>
                     <View style={styles.loginContainer}>
                         <Text style={styles.alreadyRegisteredText}>Don't have an existing account?</Text>
@@ -84,7 +137,11 @@ const Login = () => {
                
             
             </View>
-          
+            <ModalMessage
+              visible={errorModalVisible}
+              message={errorMessage}
+              onClose={() => setErrorModalVisible(false)}
+            />
            
       </ScrollView>
     

@@ -21,7 +21,7 @@ const Welcome = () => {
       <Text style={styles.subCaption}>The easiest mobile application to get event</Text>
       <Text style={styles.subCaption}> tickets!</Text>
       <View style={styles.space} />
-      <TouchableOpacity  onPress={() => { router.push(`/sign-up`);}} style={styles.button}>
+      <TouchableOpacity  onPress={() => { router.push(`/login`);}} style={styles.button}>
          <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
   </View>
