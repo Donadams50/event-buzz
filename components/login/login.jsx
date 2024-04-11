@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import {  useRouter } from "expo-router";
 
 import { Text, View, TouchableOpacity,Image, TextInput, ScrollView, ActivityIndicator} from 'react-native';
 
@@ -10,8 +9,9 @@ import styles from "./login.style";
 
 import { Ionicons } from '@expo/vector-icons';
 
+import {  useRouter } from "expo-router";
+
 const Login = ({ModalMessage}) => {
- 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -19,10 +19,7 @@ const Login = ({ModalMessage}) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
+  const router = useRouter()
   
   const handleLogin = async () => {
     setIsLoading(true); 
@@ -46,9 +43,7 @@ const Login = ({ModalMessage}) => {
            password
          }),
        });
-     //  console.log(response)
      const data = await response.json();
-     console.log(data)
        if (data.status == 200) {
          console.log(response)
          // Navigate to the dashboard upon successful registration
@@ -69,8 +64,11 @@ const Login = ({ModalMessage}) => {
      }
    };
 
+   const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-  const router = useRouter()
+
   return (
     
         // Scrollview is the parent tag because of the form, while typing the password,

@@ -4,7 +4,7 @@ import { View, Text, FlatList, Image, TouchableOpacity, Modal, TextInput, Alert,
 
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { useNavigation } from '@react-navigation/native';
+
 
 import * as Location from 'expo-location';
 
@@ -16,6 +16,8 @@ import {Picker} from '@react-native-picker/picker';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+import { useNavigation } from '@react-navigation/native';
 
 const EventList = () => {
   const [numColumns, setNumColumns] = useState(2); // Initial number of columns
@@ -33,6 +35,20 @@ const EventList = () => {
 
   const navigation = useNavigation();
 
+   // at the click of an event to view more
+   const handleEventPress = async (eventData) => {
+    try {
+      // Save event data to AsyncStorage
+      await AsyncStorage.setItem('eventData', JSON.stringify(eventData));
+
+      // Navigate to EventDetails screen
+      navigation.navigate('event-details');
+
+    } catch (error) {
+      console.error('Error saving event data:', error);
+    }
+   };
+
   // fuction to get user location
   const getLocation = async () => {
     try {
@@ -46,7 +62,7 @@ const EventList = () => {
   
       await Location.requestBackgroundPermissionsAsync();
 
-      const { coords } = await Location.getCurrentPositionAsync({ accuracy: Platform.OS === "android" ? Location.Accuracy.Low : Location.Accuracy.Lowest, });
+      const { coords } = await Location.getCurrentPositionAsync({ accuracy: Platform.OS === "android" ? Location.Accuracy.Low : Location.Accuracy.Lowest });
       
       setLocation(coords);
 
@@ -65,12 +81,11 @@ const EventList = () => {
   //api call to ticket master api to fetch events 
   const fetchData = async (geoPoint, lat, long ) => {
     try {
-      const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=50&geoPoint=${geoPoint}&sort=distance,date,asc&radius=${radius}&keyword=${keyword}&unit=${radiusUnit}&apikey=hzRbQYyoQVOGZvLgrGMFzRSe9IzMjQjg`);
+  const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?size=50&geoPoint=${geoPoint}&sort=distance,date,asc&radius=${radius}&keyword=${keyword}&unit=${radiusUnit}&apikey=hzRbQYyoQVOGZvLgrGMFzRSe9IzMjQjg`);
       const data = await response.json();
       const transformedData = data._embedded.events.map(event => {
         // Calculate distance between user's current location and event location
         const distance = calculateDistance(lat, long, event._embedded?.venues?.[0]?.location.latitude, event._embedded?.venues?.[0]?.location.longitude);
-        
         return {
           id: event.id,
           title: event.name || "",
@@ -160,17 +175,6 @@ const EventList = () => {
     return distance.toFixed(2); // Round to 2 decimal places
    };
 
-   // at the click of an event to view more
-   const handleEventPress = async (eventData) => {
-    try {
-      // Save event data to AsyncStorage
-      await AsyncStorage.setItem('eventData', JSON.stringify(eventData));
-      // Navigate to EventDetails screen
-      navigation.navigate('event-details');
-    } catch (error) {
-      console.error('Error saving event data:', error);
-    }
-   };
 
 
    const renderItem = ({ item }) => (

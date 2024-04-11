@@ -8,7 +8,7 @@ import { images} from '../../../constants';
 
 const Logo = () => {
   return (
-    <View style={styles.imageContainer} >
+ <View style={styles.imageContainer} >
     <Image source={images.logoLeftWhite} style={styles.image} />
     <Image source={images.logoRightWhite} style={styles.image} />
   </View>

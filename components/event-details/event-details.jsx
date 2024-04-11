@@ -39,20 +39,22 @@ const EventDetails = () => {
         currentTicketList = JSON.parse(currentTicketListString);
       }
 
-      // Append eventData to the ticketList array
-      currentTicketList.push(eventData);
+      // Append eventData to the beginning of the ticketList array
+      currentTicketList.unshift(eventData);
 
       // Save the updated ticketList array back to AsyncStorage
       await AsyncStorage.setItem('ticketList', JSON.stringify(currentTicketList));
       
-      // Notify user or navigate to another screen
+      // Notify user success
       console.log('Event ticket purchased successfully!');
       setIsLoading(false);
+      // navigate to purchased ticket list
       router.push(`/ticket`);
     } catch (error) {
       console.error('Error handling payment:', error);
     }
   };
+
 
   // Render loading indicator while eventData is empty
   if (!eventData) {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import {  useRouter } from "expo-router";
 
 import { Text, View, TouchableOpacity,Image, TextInput, ScrollView, ActivityIndicator} from 'react-native';
 
@@ -9,6 +8,9 @@ import { images} from '../../constants';
 import styles from "./sign-up.style";
 
 import { Ionicons } from '@expo/vector-icons';
+
+
+import {  useRouter } from "expo-router";
 
 const SignUp = ({ModalMessage}) => {
   const [name, setName] = useState('');

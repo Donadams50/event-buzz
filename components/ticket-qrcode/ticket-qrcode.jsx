@@ -4,6 +4,8 @@ import QRCode from 'react-native-qrcode-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './ticket-qrcode.style'; // Import the styles
 
+import QRCode from 'react-native-qrcode-svg';
+
 const TicketQRCode = () => {
   const [ticketData, setTicketData] = useState(null);
   const [isLoading, setIsLoading] = useState(true); // State to track loading status
@@ -38,8 +40,6 @@ const TicketQRCode = () => {
           <View>
           
             <Text style={styles.title}>{ticketData.title}</Text>
-            
-           
             <View > 
               <QRCode
                 value={JSON.stringify(ticketData)}
