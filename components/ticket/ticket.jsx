@@ -16,6 +16,7 @@ const TicketPage = () => {
 
   const loadTicketListFromStorage = async () => {
     try {
+     // await AsyncStorage.setItem('ticketList', JSON.stringify([]));
       // Retrieve ticket list from AsyncStorage
       const storedTicketList = await AsyncStorage.getItem('ticketList');
       if (storedTicketList !== null) {
@@ -64,16 +65,16 @@ const TicketPage = () => {
         <FlatList
           data={ticketList}
           renderItem={renderTicketItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item, index) => index.toString()} // Use index as the key
         />
       ) : (
         <View style={styles.noTicketsContainer}>
           <Text style={styles.noTicketsText}>No purchased tickets available</Text>
         </View>
       )}
-     
     </View>
   );
+  
 };
 
 export default TicketPage;

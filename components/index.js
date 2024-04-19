@@ -17,6 +17,9 @@ import Login from "./login/login";
  import EventDetails from "./event-details/event-details";
  import TicketPage from "./ticket/ticket";
  import TicketQRCode from "./ticket-qrcode/ticket-qrcode";
+
+ import PaymentScreen from "./payment/payment";
+ 
  
  
 // common
@@ -37,5 +40,6 @@ export {
   EventDetails,
   ModalMessage,
   TicketPage,
-  TicketQRCode
+  TicketQRCode,
+  PaymentScreen
 };

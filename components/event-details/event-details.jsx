@@ -20,7 +20,7 @@ const EventDetails = () => {
         if (data) {
           
           setEventData(JSON.parse(data));
-         // console.log(eventData.images)
+          setIsLoading(false)
         }
       })
       .catch((error) => console.error('Error retrieving event data:', error));
@@ -30,38 +30,22 @@ const EventDetails = () => {
   const handlePayment = async () => {
     try {
       setIsLoading(true);
-      // Retrieve the current ticketList array from AsyncStorage
-      const currentTicketListString = await AsyncStorage.getItem('ticketList');
-      let currentTicketList = [];
+     
 
-      // If there's a current ticketList, parse it
-      if (currentTicketListString) {
-        currentTicketList = JSON.parse(currentTicketListString);
-      }
+      // Navigate to the payment screen
+      router.push('/payment');
 
-      // Append eventData to the beginning of the ticketList array
-      currentTicketList.unshift(eventData);
-
-      // Save the updated ticketList array back to AsyncStorage
-      await AsyncStorage.setItem('ticketList', JSON.stringify(currentTicketList));
-      
-      // Notify user success
-      console.log('Event ticket purchased successfully!');
-      setIsLoading(false);
-      // navigate to purchased ticket list
-      router.push(`/ticket`);
     } catch (error) {
       console.error('Error handling payment:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   // Render loading indicator while eventData is empty
   if (!eventData) {
     return (
-      <View style={eventDetailsStyles.loadingContainer}>
-        <Text>Loading...</Text>
-      </View>
+      <ActivityIndicator size="large" color="#083B51" />
     );
   }
 

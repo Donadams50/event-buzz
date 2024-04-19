@@ -4,7 +4,6 @@ import QRCode from 'react-native-qrcode-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './ticket-qrcode.style'; // Import the styles
 
-import QRCode from 'react-native-qrcode-svg';
 
 const TicketQRCode = () => {
   const [ticketData, setTicketData] = useState(null);
